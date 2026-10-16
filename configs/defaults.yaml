@@ -1,0 +1,13 @@
+# Default experiment parameters (PLAN.md §5, §12).
+# Everything here is overridable per-room / per-experiment in the YAML presets;
+# simulation code must read these values from configs, never hardcode them.
+#
+# Determinism rule (PLAN.md §5): all experiment parameters live in configs/*.yaml.
+
+seed: 42
+sample_rate_hz: 48000
+
+# Acoustic bands under investigation (PLAN.md §2: 8–12 kHz MFSK, 10–20 kHz CSS).
+audio_bands_hz:
+  mfsk: [8000.0, 12000.0]
+  css: [10000.0, 20000.0]

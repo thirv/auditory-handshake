@@ -1,0 +1,14 @@
+# Room preset: car cabin (~10 m³, PLAN.md §5).
+# Dimensions in metres; pyroomacoustics Shoebox expects [x, y, z].
+name: cabin
+dimensions_m: [2.0, 1.6, 3.2]
+
+# Frequency-dependent absorption. `frequencies_hz` and the per-face `absorption`
+# arrays are aligned element-wise; values are Sabine absorption coefficients
+# in [0, 1]. Faces x/y/z map directly to pyroomacoustics material slots.
+absorption:
+  frequencies_hz: [250.0, 500.0, 1000.0, 2000.0, 4000.0]
+  absorption:
+    x: [0.35, 0.40, 0.45, 0.50, 0.55]
+    y: [0.30, 0.35, 0.40, 0.45, 0.50]
+    z: [0.20, 0.25, 0.30, 0.35, 0.40]

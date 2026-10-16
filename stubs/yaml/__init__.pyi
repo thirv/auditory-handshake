@@ -1,0 +1,6 @@
+"""Minimal type stubs for PyYAML (no official stubs; see mypy config)."""
+
+from typing import Any
+
+def safe_load(stream: str) -> Any: ...
+def safe_dump(data: Any, stream: Any = ...) -> str: ...

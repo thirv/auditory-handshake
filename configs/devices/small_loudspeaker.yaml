@@ -1,0 +1,18 @@
+# Device preset: small loudspeaker (TX). PLAN §2.1: "small loudspeakers roll
+# off steeply below ~200–300 Hz"; both transducers are "non-linear at high
+# SPL". Values are models, not measurements (PLAN §5, out-of-scope note).
+name: small_loudspeaker
+kind: loudspeaker
+
+# Non-flat transducer response (dB), aligned element-wise with
+# frequency_response_hz. Low-freq rolloff below ~300 Hz, high-freq rolloff
+# above ~12 kHz.
+frequency_response_hz: [100.0, 200.0, 300.0, 500.0, 1000.0, 2000.0, 4000.0, 8000.0, 10000.0, 12000.0, 14000.0, 16000.0, 18000.0, 20000.0]
+frequency_response_db: [-30.0, -12.0, -4.0, 0.0, 0.0, -1.0, -3.0, -6.0, -10.0, -16.0, -22.0, -30.0, -40.0, -50.0]
+
+# Device-limited usable sub-band (PLAN §2.1: band selection is a first-class
+# design variable).
+usable_band_hz: [300.0, 12000.0]
+
+# SPL above which the transducer compresses / clips (high-SPL non-linearity).
+max_spl_db: 105.0

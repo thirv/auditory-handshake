@@ -1,0 +1,35 @@
+version: 1
+generated_by: sims/02_channel_characterization.py
+fs_hz: 48000.0
+seed: 42
+rooms:
+  cabin:
+    rt60_s: 0.102083
+    tau_mean_s: 0.002613928
+    tau_rms_s: 0.004044871
+    b50_s: 0.001699034
+    b90_s: 0.00170828
+  conference_room:
+    rt60_s: 0.407088
+    tau_mean_s: 0.003581182
+    tau_rms_s: 0.012653864
+    b50_s: 0.001698947
+    b90_s: 0.001708113
+  corridor:
+    rt60_s: 0.246572
+    tau_mean_s: 0.002404804
+    tau_rms_s: 0.011684005
+    b50_s: 0.001698163
+    b90_s: 0.001706703
+  small_hall:
+    rt60_s: 0.711008
+    tau_mean_s: 0.00265774
+    tau_rms_s: 0.013940542
+    b50_s: 0.001698075
+    b90_s: 0.001706544
+  small_office:
+    rt60_s: 0.425233
+    tau_mean_s: 0.007517254
+    tau_rms_s: 0.017941539
+    b50_s: 0.00170095
+    b90_s: 0.020899772

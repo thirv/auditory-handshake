@@ -1,0 +1,20 @@
+# Scenario: conference room, HVAC pink + human speech, near-stationary.
+# PLAN §2.5 (speech adds more noise).
+name: conference_call
+room: conference_room
+tx_device: small_loudspeaker
+rx_device: mems_microphone
+
+noise_sources:
+  - kind: hvac_pink
+    level_db_spl: 42.0
+    distance_m: 6.0
+    center_hz: null
+  - kind: speech
+    level_db_spl: 55.0
+    distance_m: 2.0
+    center_hz: null
+
+drone_speed_ms: 0.0
+frame_mode: two_way
+seed: 42

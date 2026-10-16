@@ -1,0 +1,16 @@
+# Scenario: quiet office, HVAC pink noise only, no motion. PLAN §2.5 (noise),
+# §2.4 (frame modes). Deterministic baseline (seed 42, PLAN §5).
+name: quiet_office
+room: small_office
+tx_device: small_loudspeaker
+rx_device: mems_microphone
+
+noise_sources:
+  - kind: hvac_pink
+    level_db_spl: 38.0
+    distance_m: 5.0
+    center_hz: null
+
+drone_speed_ms: 0.0
+frame_mode: two_way
+seed: 42

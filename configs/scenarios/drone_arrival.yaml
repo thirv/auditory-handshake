@@ -1,0 +1,22 @@
+# Scenario: the "drone arrives" fast path. PLAN §2.4: "The shout frame is the
+# fast path for the 'drone arrives' scenario." A moving drone is a
+# Doppler-heavy, fast-fading channel (PLAN §2.3: at 10 kHz and 5 m/s the
+# Doppler shift is ~146 Hz, enormous against 20 Hz subcarrier spacing).
+name: drone_arrival
+room: small_office
+tx_device: small_loudspeaker
+rx_device: mems_microphone
+
+noise_sources:
+  - kind: rotor
+    level_db_spl: 85.0
+    distance_m: 1.0
+    center_hz: 600.0
+  - kind: broadband
+    level_db_spl: 65.0
+    distance_m: 1.0
+    center_hz: null
+
+drone_speed_ms: 5.0
+frame_mode: shout
+seed: 42

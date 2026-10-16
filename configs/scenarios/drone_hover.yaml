@@ -1,0 +1,21 @@
+# Scenario: stationary drone hovering in the office. PLAN §2.5: "small
+# quadrotor rotor noise is 70–90 dB SPL at 1 m, concentrated at the
+# blade-passing frequency and its harmonics ... plus broadband turbulence."
+name: drone_hover
+room: small_office
+tx_device: small_loudspeaker
+rx_device: mems_microphone
+
+noise_sources:
+  - kind: rotor
+    level_db_spl: 80.0
+    distance_m: 1.0
+    center_hz: 500.0
+  - kind: broadband
+    level_db_spl: 60.0
+    distance_m: 1.0
+    center_hz: null
+
+drone_speed_ms: 0.0
+frame_mode: one_half_way
+seed: 42

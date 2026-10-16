@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auditory-handshake"
+version = "0.1.0"
+description = "Auditory handshake and communication protocol for machine listening: a sound-based machine-to-machine exchange language."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Toni Hirvonen" }]
+requires-python = ">=3.12,<3.13"
+
+# Core dependencies.
+# NOTE: pyroomacoustics is the one fragile/heavy dep (pulls C extensions and
+# geometry libs). The lower bound is the version verified by the S1 API probe
+# (0.10.1 — see docs/PYROOMACOUSTICS_API.md); the 0.6.x API names do not exist.
+dependencies = [
+    # Acoustic room simulation (primary)
+    "pyroomacoustics>=0.10.1",
+    # Numerics
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.8",
+    # Data / config
+    "pandas>=2.0",
+    "PyYAML>=6.0",
+    "tqdm>=4.65",
+    "joblib>=1.3",
+    # Audio I/O for exporting result waveforms
+    "soundfile>=0.12",
+    # Perceptual acoustic metrics (ISO 532 loudness, DIN 45631 sharpness, roughness)
+    "mosqito>=1.2.1",
+]
+
+[project.optional-dependencies]
+# Installed by default in a development checkout: `pip install -e ".[dev]"`.
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "jupyterlab>=4.0",
+    "nbconvert>=7.14",
+    "seaborn>=0.13",
+]
+# Gated to later milestones (M7+). Do NOT install until needed.
+ml = ["torch>=2.2", "scikit-learn>=1.4"]
+hw = ["sounddevice>=0.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+auditory_handshake = ["py.typed"]
+"auditory_handshake.*" = ["py.typed"]
+
+# ---------------------------------------------------------------------------
+# Lint / format
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E", "W",  # pycodestyle
+    "F",       # pyflakes
+    "I",       # isort
+    "B",       # flake8-bugbear
+    "UP",      # pyupgrade
+    "C4",      # comprehensions
+]
+ignore = ["E501"]  # line length is handled by the formatter
+
+[tool.ruff.lint.isort]
+known-first-party = ["auditory_handshake"]
+
+# Formatter. line-length MUST match [tool.ruff] (100) so the formatter and the
+# linter agree on the wrap budget (ruff ignores E501 and defers to the formatter).
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+# ---------------------------------------------------------------------------
+# Tests
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: long-running simulations (deselect with '-m \"not slow\"')",
+]
+
+# ---------------------------------------------------------------------------
+# Type checking
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "src:stubs"
+packages = ["auditory_handshake"]
+strict = true
+warn_unreachable = true

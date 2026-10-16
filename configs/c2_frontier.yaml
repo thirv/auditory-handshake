@@ -1,0 +1,36 @@
+# S17.2 — C2 frontier-sweep configuration.
+#
+# The C2 frontier sweeps, per band candidate and per lambda, the maximum
+# data rate achievable under the (bler_max, ttch_max_s) budgets. Keep this
+# file small: the grid cost is len(band_candidates) * len(lambda_grid) *
+# (n_chirps + 1) runs.
+band_candidates:
+  - [300.0, 1200.0]     # low band, MFSK-ish
+  - [1000.0, 4000.0]    # mid band
+  - [2000.0, 8000.0]    # high band
+spl_db: 80.0            # working-point source level at the transmitter
+snr_db: 20.0            # axis anchor for the SNR sweep
+bler_max: 0.1           # bit-error budget, must be in (0, 1]
+ttch_max_s: 0.5         # end-to-end latency budget in seconds
+symbols_per_second: 64.0 # target rate the frontier is pushed against
+n_chirps: 3             # chirps per frame
+# Extended λ range (up to 500) is REQUIRED for the C2 trade-off to appear:
+# with the ``mfsk`` perceptual signal the annoyance↔goodput optimum switches
+# at λ ≈ 5, so a grid stopping at 1.0 would still report DEGENERATE.
+lambda_grid: [0.01, 0.1, 1.0, 5.0, 50.0, 500.0]  # per-step penalty weights
+aggregator: best        # one of: best, mean, consensus
+room: small_office      # must name an existing configs/rooms/<name>.yaml
+# C2 cost measure (PLAN §2.6 / §9.4).  When true, sim-10 scores the frontier
+# with the perceptual annoyance measure (make_perceptual_cost_fn) instead of
+# the parametric dB audibility cost, so `make sim-10` tests C2 via annoyance.
+use_perceptual_cost: true
+# --- C2 non-degeneracy: the perceptual signal type matters ------------------
+# "noise" (the default) makes annoyance MONOTONICALLY DECREASE with band
+# centre, so the top band [2000,8000] dominates on BOTH goodput and annoyance
+# and wins at every λ → the C2 frontier collapses to one point (DEGENERATE,
+# the metric fails to differentiate). "mfsk" applies a frequency-dependent
+# sharpness/roughness penalty so annoyance INCREASES with band centre, giving a
+# genuine annoyance↔goodput trade-off and two distinct frontier points
+# (CORROBORATED) once λ reaches ~5 (low λ → maximise goodput = high band; high
+# λ → minimise annoyance = low band).
+perceptual_signal_type: mfsk

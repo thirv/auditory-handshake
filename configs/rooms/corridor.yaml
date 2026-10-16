@@ -1,0 +1,11 @@
+# Room preset: corridor — long, non-shoebox (PLAN.md §5: ray-tracing case).
+# Aspect ratio is intentionally extreme (length >> width) so the image-source
+# method is not applicable and the engine must fall back to ray tracing.
+name: corridor
+dimensions_m: [2.5, 4.0, 30.0]
+absorption:
+  frequencies_hz: [250.0, 500.0, 1000.0, 2000.0, 4000.0]
+  absorption:
+    x: [0.25, 0.30, 0.35, 0.40, 0.45]
+    y: [0.20, 0.25, 0.30, 0.35, 0.40]
+    z: [0.15, 0.18, 0.22, 0.28, 0.32]

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this research or code, please cite it as below."
+authors:
+  - family-names: "Hirvonen"
+    given-names: "Toni"
+    orcid: "https://orcid.org/"
+title: "Auditory Handshake and Communication Protocol for Machine Listening"
+version: "0.1.0"
+date-released: "2026-10-15"
+url: "https://github.com/thirv/auditory-handshake"
+keywords:
+  - "acoustic communication"
+  - "machine listening"
+  - "handshake protocol"
+  - "control plane"
+  - "latency"
+  - "pre-alpha"
+  - "research-in-progress"

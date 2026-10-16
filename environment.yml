@@ -1,0 +1,32 @@
+# Conda path equivalent to pyproject.toml. Use when uv/pip wheels for
+# pyroomacoustics' C extension deps are troublesome.
+#
+#   conda env create -n auditory-handshake -f environment.yml
+#   conda activate auditory-handshake
+#   pip install -e ".[dev]"   # (re)installs the package itself
+#
+# Note: pyroomacoustics is pinned to >=0.10.1, the version verified by the S1
+# API probe (docs/PYROOMACOUSTICS_API.md); the probe ran under Python 3.12, which
+# is what is pinned here.
+name: auditory-handshake
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pyroomacoustics>=0.10.1
+  - numpy>=1.24
+  - scipy>=1.10
+  - matplotlib>=3.8
+  - pandas>=2.0
+  - pyyaml>=6.0
+  - tqdm>=4.65
+  - joblib>=1.3
+  - soundfile>=0.12
+  # Dev / QC
+  - pytest>=7.4
+  - pytest-cov>=4.1
+  - ruff>=0.4
+  - mypy>=1.8
+  - jupyterlab>=4.0
+  - nbconvert>=7.14
+  - seaborn>=0.13
