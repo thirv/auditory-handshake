@@ -5,8 +5,9 @@ authors:
     given-names: "Toni"
     orcid: "https://orcid.org/0009-0004-3632-8646"
 title: "Auditory Handshake and Communication Protocol for Machine Listening"
-version: "0.1.0"
+version: "0.1.1"
 date-released: "2026-10-15"
+doi: "10.5281/zenodo.23408882"
 url: "https://github.com/thirv/auditory-handshake"
 keywords:
   - "acoustic communication"
