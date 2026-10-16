@@ -126,6 +126,6 @@ If you use this research or code in your work, please cite it as follows:
   month        = oct,
   year         = {2026},
   publisher    = {GitHub},
-  version      = {0.1.0},
+  version      = {0.1.1},
   url          = {https://github.com/thirv/auditory-handshake}
 }
