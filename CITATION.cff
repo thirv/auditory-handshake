@@ -3,7 +3,7 @@ message: "If you use this research or code, please cite it as below."
 authors:
   - family-names: "Hirvonen"
     given-names: "Toni"
-    orcid: "https://orcid.org/"
+    orcid: "https://orcid.org/0009-0004-3632-8646"
 title: "Auditory Handshake and Communication Protocol for Machine Listening"
 version: "0.1.0"
 date-released: "2026-10-15"
